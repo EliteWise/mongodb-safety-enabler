@@ -27,6 +27,15 @@ while [[ "$#" -gt 0 ]]; do
     esac
 done
 
+mongosh <<EOF
+    use admin
+    db.createUser({
+        user: "$ADMIN_USERNAME",
+        pwd: "$ADMIN_PASSWORD",
+        roles: [{role: "userAdminAnyDatabase", db: "admin" }]
+    })
+EOF
+
 if $ALLOW_EXTERNAL_ACCESS && ! grep -Fq "$BIND_IP" /etc/mongod.conf; then
     sed -i "s/127.0.0.1/$BIND_IP/g" /etc/mongod.conf
 fi
@@ -36,16 +45,3 @@ if ! grep -Fq "$SECURITY" /etc/mongod.conf; then
 fi
 
 sudo systemctl restart mongod
-
-USER_EXIST=$(mongosh --quiet --eval "use admin; db.getUser('$ADMIN_USERNAME') ? true : false;")
-
-if [ "$USER_EXIST" == "true" ]; then
-mongosh <<EOF
-    use admin
-    db.createUser({
-        user: "$ADMIN_USERNAME",
-        pwd: "$ADMIN_PASSWORD",
-        roles: [{role: "userAdminAnyDatabase", db: "admin" }]
-    })
-EOF
-fi
