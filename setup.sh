@@ -32,7 +32,7 @@ mongosh <<EOF
     db.createUser({
         user: "$ADMIN_USERNAME",
         pwd: "$ADMIN_PASSWORD",
-        roles: [{role: "userAdminAnyDatabase", db: "admin" }]
+        roles: ["root"]
     })
 EOF
 
