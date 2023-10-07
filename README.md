@@ -17,10 +17,3 @@ To create a secure user named "myAdminUser" with password "securePassword" and a
 ```sh
 ./script_name.sh -u myAdminUser -p securePassword --allow-external-access
 ```
-
-### Security Highlights
-Authentication: The script activates authentication, which ensures that users must provide a valid username and password before they're granted access.
-
-Admin User Creation: By creating an administrative user, you can manage other users and their permissions effectively.
-
-IP Binding: By default, MongoDB listens on 127.0.0.1 (localhost). The --allow-external-access option expands this to listen on all network interfaces. This should be used judiciously, ensuring that firewalls and other security measures are in place.
