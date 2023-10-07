@@ -35,6 +35,8 @@ if ! grep -Fq "$SECURITY" /etc/mongod.conf; then
     echo -e "security:\n  authorization: 'enabled'" >> /etc/mongod.conf
 fi
 
+sudo systemctl restart mongod
+
 USER_EXIST=$(mongosh --quiet --eval "use admin; db.getUser('$ADMIN_USERNAME') ? true : false;")
 
 if [ "$USER_EXIST" == "true" ]; then
