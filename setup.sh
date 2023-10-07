@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ALLOW_EXTERNAL_ACCESS=false
+ALLOW_EXTERNAL_ACCESS=true
 BIND_IP="0.0.0.0"
 SECURITY="authorization"
 
