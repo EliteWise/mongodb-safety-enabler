@@ -15,5 +15,5 @@ The primary goal of this script is to enhance MongoDB's security. By default, Mo
 To create a secure user named "myAdminUser" with password "securePassword" and allow controlled external access:
 
 ```sh
-./script_name.sh -u myAdminUser -p securePassword --allow-external-access
+./setup.sh -u myAdminUser -p securePassword --allow-external-access
 ```
